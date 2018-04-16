@@ -31,14 +31,14 @@ namespace JBorut.AppConf
 
         private object RecurseReplaceValues(object baseObj, object sourceObj)
         {
-            foreach (PropertyInfo sourceObjProp in sourceObj.GetType().GetProperties())
+            foreach (PropertyInfo sourceObjProp in sourceObj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
             {
                 if (!sourceObjProp.CanRead)
                 {
                     continue;
                 }
 
-                foreach (PropertyInfo baseObjProp in baseObj.GetType().GetProperties())
+                foreach (PropertyInfo baseObjProp in baseObj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
                 {
                     if (baseObjProp.Name == sourceObjProp.Name)
                     {
