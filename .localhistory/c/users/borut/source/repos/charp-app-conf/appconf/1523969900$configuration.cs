@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace JBorut.AppConf
 {
@@ -21,10 +20,9 @@ namespace JBorut.AppConf
             config = defaults;
         }
 
-        public void ApplyJson(ref object rootNode, string source)
+        public void ApplySource(object source)
         {
-            JObject sourceObj = JObject.Parse(source);
-            //rootN
+
         }
 
         public T GetConfiguration()
@@ -34,7 +32,7 @@ namespace JBorut.AppConf
 
         public string DeserializeConfiguration()
         {
-            return JsonConvert.SerializeObject(config);
+            return JsonConvert.DeserializeObject<T>(config);
         }
     }
 }
